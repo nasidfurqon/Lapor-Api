@@ -54,3 +54,22 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Android (Capacitor)
+
+The app builds as a static SPA in `dist`, matching `webDir` in `capacitor.config.ts`.
+Build the web app before syncing it to Android:
+
+```sh
+bun run build
+bunx cap sync android
+bunx cap open android
+```
+
+Run `bunx cap add android` only once when the `android` directory does not exist.
+After changing the web app, run the build and sync commands again, then run the
+app from Android Studio on an emulator or connected device.
+
+Capacitor 8 requires Android Studio 2025.2.1 or newer and Android SDK 36.
+Use Android Studio's bundled JDK (Java 21 or newer) as the Gradle JDK; this
+project's native dependencies target Java 21.
